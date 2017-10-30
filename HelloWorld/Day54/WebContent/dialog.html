@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/Day54/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="/Day54/easyui/themes/icon.css">
+<script type="text/javascript" src="/Day54/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/Day54/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/Day54/easyui/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+<div id="dd">Dialog Content.</div>
+
+<button onclick="fn1()">按钮</button>
+<button onclick="fn2()">打开</button>
+<button onclick="fn3()">关闭</button>
+</body>
+<script>
+
+function fn1(){
+	//调用组件的刷新方法
+	$('#dd').dialog('refresh', 'test_dialog.jsp');
+}
+function fn2(){
+	//调用组件的刷新方法
+	$('#dd').dialog('open');
+}
+function fn3(){
+	//调用组件的刷新方法
+	$('#dd').dialog('close');  
+}
+$(function(){
+	//页面加载完毕获取到id为dd的标签,将其渲染为dialog组件
+	//$("#dd").函数();  函数名称就是组件的名称
+	//$("#dd").函数({});  函数参数是JSON对象
+	$('#dd').dialog({
+	    title: 'My Dialog',   //标题 
+	    width: 400,      //宽
+	    height: 200,      //高
+	    closed: true,     //是否关闭的
+	    cache: false,       //是否缓存信息
+	    href: 'test_dialog.jsp',      //服务端路径
+	    modal: false//是否模态
+	});    
+});
+</script>
+</html>

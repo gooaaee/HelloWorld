@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>商品管理</title>
+<link rel="stylesheet" type="text/css" href="/Day54/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="/Day54/easyui/themes/icon.css">
+<script type="text/javascript" src="/Day54/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/Day54/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/Day54/easyui/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+	<!-- 查询所有的商品 -->
+	<div style="margin:50px auto;width:50%;">
+		<table id="dg"></table>
+	</div>
+	<!-- 添加商品对话框 -->
+	<div id="dd" style="width:300px;height:340px;padding-left:30px;margin-top:20px;">
+		<form id="ff" style="paddind-top:30px;" method="post" enctype="multipart/form-data">
+			商品名称:<input type="text" name="pname"/><br/>
+			市场价格:<input type="text" name="market_price"/><br/>
+			商城价格:<input type="text" name="shop_price"/><br/>
+			选择图片:<input type="file" name="pimage"/><br/>
+			商品描述:<input type="text" name="pdesc"/><br/>
+			是否热门:<input type="radio" name="is_hot" value="1" checked="checked"/>是
+					<input type="radio" name="is_hot" value="0"/>否<br/>
+			是否下架:<input type="radio" name="pflag" value="1" checked="checked"/>是
+					<input type="radio" name="pflag" value="0" checked="checked"/>否<br/>
+			所属分类:
+				<select name="cid" id="category01">
+			<!-- 				
+					<option value="1">手机数码</option>
+					<option value="2">电脑办公</option> 
+			-->
+				</select>
+		</form>
+		<div id="bb">
+			<a href="#" class="easyui-linkbutton" onclick="saveProduct()">保存</a>
+			<a href="#" class="easyui-linkbutton" onclick="javascript:$('#dd').dialog('close')">关闭</a>
+   		</div>
+	</div>  
+</body>
+<script type="text/javascript">
+$(function(){
+	//查询所有商品
+	$('#dg').datagrid({  
+		fitColumns:true,
+		rownumbers:true,
+		striped:true,
+		singleSelect:true,
+	    url:'/Day54/ProductServlet?method=getAllProductWithPage',
+	    pagination:true,
+	    pageNumber:1,
+	    pageSize:5,
+	    pageList:[5,10,15,20],
+	    columns:[[    
+	        {field:'pid',title:'编号',width:100},    
+	        {field:'pname',title:'名称',width:100},  
+	        {field:'market_price',title:'市场价格',width:100},  
+	        {field:'shop_price',title:'商店价格',width:100},  
+	        {field:'pimage',title:'商品图片',width:100,
+	        	formatter: function(value,row,index){
+					return "<img src='/Day54/" + value + "' height='50px'/>";
+				}
+	        },  
+	        {field:'pdate',title:'上架日期',width:100},  
+	        {field:'is_hot',title:'是否热门',width:100,
+	        	formatter: function(value,row,index){
+	        		if(value == "1"){
+	        			return "是";
+	        		}else{
+	        			return "否";
+	        		}
+				}	
+	        },  
+	        {field:'pdesc',title:'商品描述',width:100},  
+	        {field:'pflag',title:'是否下架',width:100,
+	        	formatter: function(value,row,index){
+	        		if(value == "1"){
+	        			return "是";
+	        		}else{
+	        			return "否";
+	        		}
+				}
+	        },  
+	        {field:'cid',title:'所属分类',width:100}
+	    ]],
+	    toolbar: [{
+			iconCls: 'icon-add',
+			text:'添加商品',
+			handler: function(){addProductUI();}
+		},'-',{
+			iconCls: 'icon-remove',
+			text:'删除商品',
+			handler: function(){alert('删除按钮')}
+		},'-',{
+			iconCls: 'icon-edit',
+			text:'修改商品',
+			handler: function(){alert('修改按钮')}
+		}]
+	});
+	//添加商品对话框
+	$('#dd').dialog({    
+	    title: 'My Dialog',  
+	    closed: false,    
+	    cache: false,
+	    closed:true,
+	    modal: true   
+	});
+	//页面加载事件完成
+});
+//添加商品函数界面
+function addProductUI(){
+	$.post("/Day54/CategoryServlet",{"method":"findAllCategory"},function(data){
+		$("#category01").html("");
+		$.each(data,function(i,obj){
+			var li = "<option value='" + obj.cid + "'>"+ obj.cname +"</option>";
+			$("#category01").append(li);
+		});
+	},"json");
+	$('#dd').dialog('open');
+}
+//添加商品函数
+function saveProduct(){
+	$('#ff').form('submit', {    
+	    url:'/Day54/ProductServlet?method=addProduct',    
+	    onSubmit: function(){},    
+	    success:function(data){    
+	        alert(data);
+	        $('#dg').datagrid('reload');
+	    }    
+	});  
+}
+</script>
+</html>

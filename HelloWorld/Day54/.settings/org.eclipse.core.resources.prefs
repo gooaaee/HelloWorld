@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//WebContent/jsp/header.jsp=UTF-8
+encoding//src/com/itheima/domain/PageModel.java=GBK
+encoding//src/com/itheima/tools/JDBCUtils.java=UTF-8
+encoding//src/com/itheima/tools/JsonUtil.java=UTF-8
+encoding//src/com/itheima/tools/MyBeanUtils.java=UTF-8
+encoding//src/com/itheima/tools/PaymentUtil.java=UTF-8
+encoding//src/com/itheima/tools/UUIDUtils.java=UTF-8
+encoding//src/com/itheima/web/base/BaseServlet.java=UTF-8
+encoding//src/com/itheima/web/servlet/ProductServlet.java=UTF-8

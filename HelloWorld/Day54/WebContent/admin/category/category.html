@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>分类页面</title>
+<link rel="stylesheet" type="text/css" href="/Day54/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="/Day54/easyui/themes/icon.css">
+<script type="text/javascript" src="/Day54/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/Day54/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/Day54/easyui/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+	<div style="margin:50px auto;width:50%;">
+		<table id="dg"></table>
+	</div>
+</body>
+<script type="text/javascript">
+	$('#dg').datagrid({  
+		fitColumns:true,
+		striped:true,
+		singleSelect:true,
+	    url:'/Day54/admin/category/datagrid_data01.json',    
+	    columns:[[    
+	        {field:'cid',title:'编号',width:100},    
+	        {field:'cname',title:'名称',width:100}  
+	    ]],
+	    toolbar: [{
+			iconCls: 'icon-edit',
+			text:'添加分类',
+			handler: function(){alert('添加按钮')}
+		},'-',{
+			iconCls: 'icon-remove',
+			text:'删除分类',
+			handler: function(){alert('删除按钮')}
+		},'-',{
+			iconCls: 'icon-edit',
+			text:'修改分类',
+			handler: function(){alert('修改按钮')}
+		}]
+	});  
+</script>
+</html>

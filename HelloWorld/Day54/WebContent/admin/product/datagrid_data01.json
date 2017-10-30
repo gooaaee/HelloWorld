@@ -1,0 +1,18 @@
+{
+	"total":"50",
+	"rows":
+  	[
+		{"pid":"1","pname":"手机数码","market_price":"100","shop_price":"100","pimage":"products/1/c_0001.jpg","pdate":"ddd","is_hot":"1","pdesc":"ddd","pflag":"1","cid":"5"},
+		{"pid":"2","pname":"手机数码","market_price":"100","shop_price":"100","pimage":"products/1/c_0001.jpg","pdate":"ddd","is_hot":"1","pdesc":"ddd","pflag":"1","cid":"5"},
+		{"pid":"3","pname":"手机数码","market_price":"100","shop_price":"100","pimage":"products/1/c_0001.jpg","pdate":"ddd","is_hot":"1","pdesc":"ddd","pflag":"1","cid":"5"},
+		{"pid":"4","pname":"手机数码","market_price":"100","shop_price":"100","pimage":"products/1/c_0001.jpg","pdate":"ddd","is_hot":"1","pdesc":"ddd","pflag":"1","cid":"5"},
+		{"pid":"5","pname":"手机数码","market_price":"100","shop_price":"100","pimage":"products/1/c_0001.jpg","pdate":"ddd","is_hot":"1","pdesc":"ddd","pflag":"1","cid":"5"},
+		{"pid":"6","pname":"手机数码","market_price":"100","shop_price":"100","pimage":"products/1/c_0001.jpg","pdate":"ddd","is_hot":"1","pdesc":"ddd","pflag":"1","cid":"5"},
+		{"pid":"7","pname":"手机数码","market_price":"100","shop_price":"100","pimage":"products/1/c_0001.jpg","pdate":"ddd","is_hot":"1","pdesc":"ddd","pflag":"1","cid":"5"},
+		{"pid":"8","pname":"手机数码","market_price":"100","shop_price":"100","pimage":"products/1/c_0001.jpg","pdate":"ddd","is_hot":"1","pdesc":"ddd","pflag":"1","cid":"5"},
+		{"pid":"9","pname":"手机数码","market_price":"100","shop_price":"100","pimage":"products/1/c_0001.jpg","pdate":"ddd","is_hot":"1","pdesc":"ddd","pflag":"1","cid":"5"},
+		{"pid":"10","pname":"手机数码","market_price":"100","shop_price":"100","pimage":"products/1/c_0001.jpg","pdate":"ddd","is_hot":"1","pdesc":"ddd","pflag":"1","cid":"5"},
+		{"pid":"11","pname":"手机数码","market_price":"100","shop_price":"100","pimage":"products/1/c_0001.jpg","pdate":"ddd","is_hot":"1","pdesc":"ddd","pflag":"1","cid":"5"},
+		{"pid":"12","pname":"手机数码","market_price":"100","shop_price":"100","pimage":"products/1/c_0001.jpg","pdate":"ddd","is_hot":"1","pdesc":"ddd","pflag":"1","cid":"5"}
+	]
+}
