@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 导入jquery核心类库 -->
+<script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+<!-- 导入easyui类库 -->
+<script type="text/javascript" src="../js/easyui/jquery.easyui.min.js"></script>
+<!-- 导入ztree库 -->
+<script type="text/javascript" src="../js/ztree/jquery.ztree.all-3.5.js"></script>
+<!-- 导入默认主题CSS文件 -->
+<link id="easyuiTheme" rel="stylesheet" type="text/css" href="../js/easyui/themes/default/easyui.css"/>
+<!--  导入图标CSS文件 -->
+<link rel="stylesheet" type="text/css" href="../js/easyui/themes/icon.css"/>
+<!-- 导入ztree类型 -->
+<link rel="stylesheet" type="text/css" href="../js/ztree/zTreeStyle.css"/>
+<!--  导入国际化信息文件 -->
+<script src="../js/easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+</head>
+<body class="easyui-layout"> 
+
+  <div data-options="region:'north',title:'北',split:true" style="height:100px;"></div>   
+    <div data-options="region:'south',title:'南',split:true" style="height:100px;"></div>   
+    <!-- 西start -->
+    <div data-options="region:'west',title:'西',split:true" style="width:200px;">
+		<div id="aa" class="easyui-accordion" data-options="fit:true" style="width:200px;">   
+		    <div id="myBtn01" title="面板1" data-options="iconCls:'icon-save',selected:true" style="overflow:auto;padding:10px;">   
+		    	<ul id="mytree" class="ztree" style="width:230px; overflow:auto;"></ul>
+		    </div>
+			<div title="面板2" data-options="selected:false" style="padding:10px;">   
+		        content2    
+		    </div> 
+		</div>  
+    </div>   
+    <!-- 西end -->
+    <!-- 中start -->
+    <div data-options="region:'center',title:'中'">
+    	<!-- 选项卡开始 -->
+		<div id="tt" class="easyui-tabs" data-options="fit:true">   
+		    <div title="Tab1" data-options="closable:true">   
+		        tab1
+		    </div>
+		    <div title="Tab2" data-options="closable:true,tools:[{iconCls:'icon-reload',handler:myReload}]">
+		        tab2
+		    </div>
+		</div>  
+    	<!-- 选项卡结束 -->
+    </div>   
+	<!-- 中end -->
+</body>
+
+<script type="text/javascript">
+var zTreeObj = null;
+setting = {
+	data:{
+		simpleData:{
+			enable:true
+		}
+	},
+	callback: {
+		onClick: function(event, treeId, treeNode){
+			if(treeNode.page==undefined){return;}
+			var exists = $("#tt").tabs('exists',treeNode.name);
+			if(exists){
+				$("#tt").tabs('select',treeNode.name);
+			}else{
+				$('#tt').tabs('add',{
+				    title:treeNode.name,
+				    content:"<iframe src='../"+treeNode.page+"' style='height:100%;width:100%;'></iframe>",
+				    closable:true
+				});
+			}
+		}
+	}
+}
+function myReload(){
+	alert("刷新该标签");
+}
+$(function(){
+	$.post("../data/menu.json",{},function(data){
+		zTreeObj = $.fn.zTree.init($("#mytree"), setting, data);
+	},"json");
+	//每次系统启动弹出欢迎界面
+	setTimeout(function(){
+		$.messager.show({
+			title:'我的消息',
+			msg:'超级管理员,欢迎登录',
+			timeout:4000,
+			showType:'slide',
+			showSpeed:1000
+		});
+	}, 2000);
+
+//加载事件完成
+});
+</script>
+
+</html>
